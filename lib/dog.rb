@@ -3,6 +3,20 @@ require_relative "../config/environment.rb"
 class Dog 
   
   attr_accessor :id, :name, :breed
+  @@ all = []
+  
+  def self.all 
+    rows = DB[:conn].execute("SELECT * FROM dogs")
+    rows.each do |x|
+      x.id ==row["id"]
+    end 
+    
+    if !is_in_array
+      Dog.new(row)
+    end 
+  end 
+  @@ all 
+end
   
   def initialize(id=nil,name,breed)
     @id = id 
