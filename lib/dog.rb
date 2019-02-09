@@ -14,7 +14,6 @@ class Dog
     if !is_in_array
       Dog.new(row)
     end 
-  end 
   @@all 
   end
   
