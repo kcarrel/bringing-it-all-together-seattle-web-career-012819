@@ -16,12 +16,14 @@ class Dog
     end 
   end 
   @@ all 
-end
+  end
   
-  def initialize(id=nil,name,breed)
-    @id = id 
-    @name = name 
-    @breed = breed 
+  def initialize(attributes={})
+    @id = attributes['id'] 
+    @name = attributes['name'] 
+    @breed = attributes['breed']
+    
+    @@all << self
   end 
   
   def self.create_table 
