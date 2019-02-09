@@ -19,10 +19,12 @@ class Dog
     DB[:conn].execute(sql)
   end 
   
-  def drop_table 
+  def self.drop_table 
   end 
   
   def new_from_db 
+    sql = "DROP TABLE IF EXISTS dogs"
+    DB[:conn].execute(sql)
   end 
   
   def find_by_name 
@@ -32,6 +34,13 @@ class Dog
   end 
   
   def save 
+    if self.id 
+      self.update
+    else 
+      sql = "INSERT INTO dogs (name,breed) VALUES (?, ?)"
+      
+      DB[:conn].execute(sql,self.name,self.breed)
+      @id = DB[:conn].execute
   end 
   
   
