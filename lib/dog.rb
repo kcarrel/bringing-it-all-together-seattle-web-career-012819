@@ -27,10 +27,16 @@ class Dog
     DB[:conn].execute(sql)
   end 
   
-  def find_by_name 
+  def self.find_by_name(name) 
+    sql = "SELECT * FROM dogs WHERE name = ? LIMIT 1"
+    DB[:conn].execute(sql,name).map do |row|
+      self.new_from_db(row)
+    end.first
   end 
   
-  def update 
+  def update
+    sql = "UPDATE dogs SET name = ?, breed = ? WHERE id = ?"
+    DB[:conn].execute(sql,self.name,self.grade,self.id)
   end 
   
   def save 
@@ -40,7 +46,7 @@ class Dog
       sql = "INSERT INTO dogs (name,breed) VALUES (?, ?)"
       
       DB[:conn].execute(sql,self.name,self.breed)
-      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs")
+      @id = DB[:conn].execute("SELECT last_insert_rowid() FROM dogs")[0][0]
   end 
   
   
