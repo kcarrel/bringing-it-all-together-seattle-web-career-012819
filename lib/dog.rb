@@ -3,7 +3,7 @@ require_relative "../config/environment.rb"
 class Dog 
   
   attr_accessor :id, :name, :breed
-  @@ all = []
+  @@all = []
   
   def self.all 
     rows = DB[:conn].execute("SELECT * FROM dogs")
