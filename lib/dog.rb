@@ -15,7 +15,7 @@ class Dog
       Dog.new(row)
     end 
   end 
-  @@ all 
+  @@all 
   end
   
   def initialize(attributes={})
